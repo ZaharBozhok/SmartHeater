@@ -11,4 +11,10 @@ const pin_t g_pinRelay = 12;
 
 const size_t g_serialBaudRate = 9600;
 const size_t g_eepromSize = 512;
+
+const size_t g_reconnectTries = 10;
+const size_t g_reconnectDelay = 2000;
+
+#define DEBUG
+
 #endif
