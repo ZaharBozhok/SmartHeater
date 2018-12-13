@@ -8,11 +8,19 @@
 #define WARN_t  "WARN"
 #define ERRO_t  "ERRO"
 
+#define SLASH '/'
+#ifdef _WIN32
+    #define SLASH '\\'
+#elif __linux__
+    #define SLASH '/'
+#endif
+
 //log func
 #define _LOG(x) Serial.print(x);
 
 //log function
-#define LOG(msg, type) _LOG("[") _LOG(type) _LOG("] "); _LOG(__FILE__) _LOG(":") _LOG(__LINE__) _LOG("->") _LOG(__func__) _LOG(" : ") _LOG(msg) _LOG('\n');
+#define _FILE strrchr(__FILE__, '\\') ? strrchr(__FILE__, '\\') + 1 : __FILE__
+#define LOG(msg, type) _LOG("[") _LOG(type) _LOG("] "); _LOG(_FILE) _LOG(":") _LOG(__LINE__) _LOG("->") _LOG(__func__) _LOG(" : ") _LOG(msg) _LOG('\n');
 
 #define LOG_ERR(msg) LOG(msg,ERRO_t)
 
